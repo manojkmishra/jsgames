@@ -9,4 +9,9 @@
 .grid div{
     width:20px; 
     height:20px; 
-    background-color: hotpink;}
+    /*background-color: hotpink;*/
+}
+
+.tetromino{
+    background-color: blue;
+}
