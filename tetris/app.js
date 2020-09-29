@@ -50,12 +50,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const theTetrominoes = [lTetromino, zTetromino, tTetromino, oTetromino, iTetromino]
     console.log('all theTetrominoes',theTetrominoes)
 //------------draw first roation of L tetromino-----ie add div with 4 values------
-console.log('theTetrominoes',theTetrominoes[0][0])
-let currentPosition=4
-let current=theTetrominoes[0][0]
+let random = Math.floor(Math.random() * theTetrominoes.length)
+console.log('random',random);
+//console.log('L theTetrominoes',theTetrominoes[0][0]) //random-- 0-L,1-Z,2-T,3-O,4-I
+let currentPosition=4//start from fourth square
+let currentRotation=0 //always choose first rotation of all shapes 
+//let current=theTetrominoes[0][0] // L tetromino
+let current=theTetrominoes[random][currentRotation]
+console.log('random theTetrominoes',current) 
 function draw()
-{   current.forEach(index=>{squares[currentPosition+index].classList.add('tetromino')})
-}
+{   current.forEach(index=>{squares[currentPosition+index].classList.add('tetromino')})}
 draw()
+function undraw()
+{   current.forEach(index=>{squares[currentPosition+index].classList.remove('tetromino')})}
+undraw()
 
 })
