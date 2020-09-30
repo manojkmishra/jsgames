@@ -65,7 +65,16 @@ let currentRotation=0 //always choose first rotation of all shapes
     function undraw()
     {   current.forEach(index=>{squares[currentPosition+index].classList.remove('tetromino')})}
     //undraw()
-//================move down==========================================
+
+  //===============assign functions to keyCodes=======eventlistener
+  function control(e) 
+  {   if(e.keyCode === 37) { moveLeft() } 
+      else if (e.keyCode === 38) { rotate()} 
+      else if (e.keyCode === 39) { moveRight() }
+      else if (e.keyCode === 40) { moveDown()  }
+  }
+  document.addEventListener('keyup', control)
+  //================move down==========================================
 timerId=setInterval(moveDown,1000)
     function moveDown(){
         undraw()
@@ -85,6 +94,17 @@ function freeze() {
       currentPosition = 4
       draw()
     }
+  }
+//=====================left=========================
+  //move the tetromino left, unless is at the edge or there is a blockage
+  function moveLeft() 
+  { undraw()
+    const isAtLeftEdge = current.some(index => (currentPosition + index) % width === 0)
+    if(!isAtLeftEdge) currentPosition -=1
+    if(current.some(index => squares[currentPosition + index].classList.contains('taken'))) {
+      currentPosition +=1
+    }
+    draw()
   }
 
   
